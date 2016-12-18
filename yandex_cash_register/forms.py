@@ -1,6 +1,6 @@
 # coding=utf-8
 from __future__ import absolute_import, unicode_literals
-
+import logging
 from hashlib import md5
 
 from django import forms
@@ -11,7 +11,7 @@ from django.utils.translation import ugettext as _
 from .apps import YandexMoneyConfig
 from . import conf
 
-
+logger = logging.getLogger(__name__)
 readonly_widget = forms.TextInput(attrs={'readonly': 'readonly'})
 
 
@@ -65,6 +65,8 @@ class ShopIdForm(forms.Form):
 
     def _clean_paymentType(self):
         payment_type = self.cleaned_data['paymentType']
+        logger.info('form.payment_type: %s' % payment_type)
+        logger.info('obj.payment_type: %s' % str(self.payment_obj.payment_type))
         if payment_type != str(self.payment_obj.payment_type):
             raise forms.ValidationError(
                 _('Unknown or unsupported payment method'))
