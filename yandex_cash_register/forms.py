@@ -65,9 +65,7 @@ class ShopIdForm(forms.Form):
 
     def _clean_paymentType(self):
         payment_type = self.cleaned_data['paymentType']
-        logger.info('form.payment_type: %s' % payment_type)
-        logger.info('obj.payment_type: %s' % str(self.payment_obj.payment_type))
-        if payment_type != str(self.payment_obj.payment_type):
+        if self.payment_obj.payment_type and payment_type != str(self.payment_obj.payment_type):
             raise forms.ValidationError(
                 _('Unknown or unsupported payment method'))
         return payment_type

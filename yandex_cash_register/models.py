@@ -48,7 +48,6 @@ class Payment(models.Model):
     payment_type = models.CharField(_('Payment method'), max_length=2,
                                     default=conf.PAYMENT_TYPE_YANDEX_MONEY,
                                     choices=conf.BASE_PAYMENT_TYPE_CHOICES,
-                                    editable=False,
                                     null=True,
                                     blank=True)
     invoice_id = models.CharField(_('Invoice ID'), max_length=64,
