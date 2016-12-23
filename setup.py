@@ -44,6 +44,6 @@ setup(
     ],
     install_requires=[
         'django>=1.8',
-        'lxml>=3.5',
+        'lxml==3.6.4',
     ],
 )
