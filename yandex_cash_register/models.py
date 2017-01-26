@@ -40,13 +40,10 @@ class Payment(models.Model):
                              verbose_name=_('User'))
     order_id = models.CharField(_('Order ID'), max_length=50, unique=True,
                                 editable=False, db_index=True)
-    customer_id = models.UUIDField(_('Customer ID'), unique=True,
-                                   default=uuid.uuid4, editable=False)
+    customer_id = models.CharField(_('Customer ID'), max_length=64, editable=False)
     state = models.CharField(_('State'), max_length=16, choices=STATE_CHOICES,
                              default=STATE_CREATED, editable=False)
-
     payment_type = models.CharField(_('Payment method'), max_length=2,
-                                    default=conf.PAYMENT_TYPE_YANDEX_MONEY,
                                     choices=conf.BASE_PAYMENT_TYPE_CHOICES,
                                     null=True,
                                     blank=True)
